@@ -154,13 +154,26 @@ int main() {
     }
     if (paretto_dom == -1)
         std::cout << "There is no Pareto optimal profile in this game";
-    else
-        std::cout << "Pareto optimal profile is: " << paretto_dom;
+    else {
+        std::cout << "Pareto optimal profile is: " << paretto_dom + 1;
+        std::vector<int> temp;
+        temp = gain.profToNumb(paretto_dom);
+        std::cout << "\nPlayers' strategies in " << paretto_dom + 1 << " profile: ";
+        for (int i = 0; i < temp.size(); ++i)
+            std::cout << temp[i] + 1 << ' ';
+    }
     std::cout << "\nNash equilibrium profiles:\n";
     std::vector<int> nash;
     nash = gain.Nash_equil();
     for (size_t i = 0; i < nash.size(); ++i) {
-        std::cout << nash[i] << ' ';
+        std::cout << nash[i] + 1 << ' ';
+    }
+    for (size_t i = 0; i < nash.size(); ++i) {
+        std::vector<int> temp;
+        temp = gain.profToNumb(nash[i]);
+        std::cout << "\nPlayers' strategies in " << nash[i] + 1 << " profile: ";
+        for (int j = 0; j < temp.size(); ++j)
+            std::cout << temp[j] + 1 << ' ';
     }
     int dom_strat_numbers;
     d >> dom_strat_numbers;
